@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_planteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contenu">
+          <Key>
+            <PropertyRef Name="idContenu" />
+          </Key>
+          <Property Name="idContenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numj" Type="int" />
+          <Property Name="nump" Type="int" />
+          <Property Name="quantite" Type="int" />
+        </EntityType>
+        <EntityType Name="jardin">
+          <Key>
+            <PropertyRef Name="numJ" />
+          </Key>
+          <Property Name="numJ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomJ" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+          <Property Name="ville" Type="char" MaxLength="50" />
+          <Property Name="superficier" Type="int" />
+          <Property Name="numjardinier" Type="int" />
+        </EntityType>
+        <EntityType Name="jardinier">
+          <Key>
+            <PropertyRef Name="numJardinier" />
+          </Key>
+          <Property Name="numJardinier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomJardinier" Type="nvarchar" MaxLength="50" />
+          <Property Name="prenom" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateEmbauche" Type="date" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="MDP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Plante">
+          <Key>
+            <PropertyRef Name="numP" />
+          </Key>
+          <Property Name="numP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Origine" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prix" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK__contenu__numj__45F365D3">
+          <End Role="jardin" Type="Self.jardin" Multiplicity="0..1" />
+          <End Role="contenu" Type="Self.contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jardin">
+              <PropertyRef Name="numJ" />
+            </Principal>
+            <Dependent Role="contenu">
+              <PropertyRef Name="numj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenu__nump__46E78A0C">
+          <End Role="Plante" Type="Self.Plante" Multiplicity="0..1" />
+          <End Role="contenu" Type="Self.contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plante">
+              <PropertyRef Name="numP" />
+            </Principal>
+            <Dependent Role="contenu">
+              <PropertyRef Name="nump" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__jardin__numjardi__4316F928">
+          <End Role="jardinier" Type="Self.jardinier" Multiplicity="0..1" />
+          <End Role="jardin" Type="Self.jardin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jardinier">
+              <PropertyRef Name="numJardinier" />
+            </Principal>
+            <Dependent Role="jardin">
+              <PropertyRef Name="numjardinier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_planteModelStoreContainer">
+          <EntitySet Name="contenu" EntityType="Self.contenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jardin" EntityType="Self.jardin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jardinier" EntityType="Self.jardinier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plante" EntityType="Self.Plante" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__contenu__numj__45F365D3" Association="Self.FK__contenu__numj__45F365D3">
+            <End Role="jardin" EntitySet="jardin" />
+            <End Role="contenu" EntitySet="contenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenu__nump__46E78A0C" Association="Self.FK__contenu__nump__46E78A0C">
+            <End Role="Plante" EntitySet="Plante" />
+            <End Role="contenu" EntitySet="contenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__jardin__numjardi__4316F928" Association="Self.FK__jardin__numjardi__4316F928">
+            <End Role="jardinier" EntitySet="jardinier" />
+            <End Role="jardin" EntitySet="jardin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_planteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contenu">
+          <Key>
+            <PropertyRef Name="idContenu" />
+          </Key>
+          <Property Name="idContenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numj" Type="Int32" />
+          <Property Name="nump" Type="Int32" />
+          <Property Name="quantite" Type="Int32" />
+          <NavigationProperty Name="jardin" Relationship="Self.FK__contenu__numj__45F365D3" FromRole="contenu" ToRole="jardin" />
+          <NavigationProperty Name="Plante" Relationship="Self.FK__contenu__nump__46E78A0C" FromRole="contenu" ToRole="Plante" />
+        </EntityType>
+        <EntityType Name="jardin">
+          <Key>
+            <PropertyRef Name="numJ" />
+          </Key>
+          <Property Name="numJ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomJ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ville" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="superficier" Type="Int32" />
+          <Property Name="numjardinier" Type="Int32" />
+          <NavigationProperty Name="contenus" Relationship="Self.FK__contenu__numj__45F365D3" FromRole="jardin" ToRole="contenu" />
+          <NavigationProperty Name="jardinier" Relationship="Self.FK__jardin__numjardi__4316F928" FromRole="jardin" ToRole="jardinier" />
+        </EntityType>
+        <EntityType Name="jardinier">
+          <Key>
+            <PropertyRef Name="numJardinier" />
+          </Key>
+          <Property Name="numJardinier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomJardinier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateEmbauche" Type="DateTime" Precision="0" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MDP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="jardins" Relationship="Self.FK__jardin__numjardi__4316F928" FromRole="jardinier" ToRole="jardin" />
+        </EntityType>
+        <EntityType Name="Plante">
+          <Key>
+            <PropertyRef Name="numP" />
+          </Key>
+          <Property Name="numP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Origine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prix" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="contenus" Relationship="Self.FK__contenu__nump__46E78A0C" FromRole="Plante" ToRole="contenu" />
+        </EntityType>
+        <Association Name="FK__contenu__numj__45F365D3">
+          <End Role="jardin" Type="Self.jardin" Multiplicity="0..1" />
+          <End Role="contenu" Type="Self.contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jardin">
+              <PropertyRef Name="numJ" />
+            </Principal>
+            <Dependent Role="contenu">
+              <PropertyRef Name="numj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contenu__nump__46E78A0C">
+          <End Role="Plante" Type="Self.Plante" Multiplicity="0..1" />
+          <End Role="contenu" Type="Self.contenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plante">
+              <PropertyRef Name="numP" />
+            </Principal>
+            <Dependent Role="contenu">
+              <PropertyRef Name="nump" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__jardin__numjardi__4316F928">
+          <End Role="jardinier" Type="Self.jardinier" Multiplicity="0..1" />
+          <End Role="jardin" Type="Self.jardin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jardinier">
+              <PropertyRef Name="numJardinier" />
+            </Principal>
+            <Dependent Role="jardin">
+              <PropertyRef Name="numjardinier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_planteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contenus" EntityType="Self.contenu" />
+          <EntitySet Name="jardins" EntityType="Self.jardin" />
+          <EntitySet Name="jardiniers" EntityType="Self.jardinier" />
+          <EntitySet Name="Plantes" EntityType="Self.Plante" />
+          <AssociationSet Name="FK__contenu__numj__45F365D3" Association="Self.FK__contenu__numj__45F365D3">
+            <End Role="jardin" EntitySet="jardins" />
+            <End Role="contenu" EntitySet="contenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contenu__nump__46E78A0C" Association="Self.FK__contenu__nump__46E78A0C">
+            <End Role="Plante" EntitySet="Plantes" />
+            <End Role="contenu" EntitySet="contenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__jardin__numjardi__4316F928" Association="Self.FK__jardin__numjardi__4316F928">
+            <End Role="jardinier" EntitySet="jardiniers" />
+            <End Role="jardin" EntitySet="jardins" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_planteModelStoreContainer" CdmEntityContainer="db_planteEntities">
+          <EntitySetMapping Name="contenus">
+            <EntityTypeMapping TypeName="db_planteModel.contenu">
+              <MappingFragment StoreEntitySet="contenu">
+                <ScalarProperty Name="idContenu" ColumnName="idContenu" />
+                <ScalarProperty Name="numj" ColumnName="numj" />
+                <ScalarProperty Name="nump" ColumnName="nump" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jardins">
+            <EntityTypeMapping TypeName="db_planteModel.jardin">
+              <MappingFragment StoreEntitySet="jardin">
+                <ScalarProperty Name="numJ" ColumnName="numJ" />
+                <ScalarProperty Name="nomJ" ColumnName="nomJ" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="superficier" ColumnName="superficier" />
+                <ScalarProperty Name="numjardinier" ColumnName="numjardinier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jardiniers">
+            <EntityTypeMapping TypeName="db_planteModel.jardinier">
+              <MappingFragment StoreEntitySet="jardinier">
+                <ScalarProperty Name="numJardinier" ColumnName="numJardinier" />
+                <ScalarProperty Name="nomJardinier" ColumnName="nomJardinier" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="dateEmbauche" ColumnName="dateEmbauche" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="MDP" ColumnName="MDP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plantes">
+            <EntityTypeMapping TypeName="db_planteModel.Plante">
+              <MappingFragment StoreEntitySet="Plante">
+                <ScalarProperty Name="numP" ColumnName="numP" />
+                <ScalarProperty Name="nomP" ColumnName="nomP" />
+                <ScalarProperty Name="Origine" ColumnName="Origine" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

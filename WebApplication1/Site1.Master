@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <style>
+        body{
+            background-image:url("Backimage/garden.jpg");
+            background-size:cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: #464646;
+            font-family:sans-serif;
+            overflow:scroll;
+            color:whitesmoke;
+            text-align:center;
+        }
+        header,div {
+                display: grid;
+                justify-content: center;
+                align-content: center;
+                text-align:center;
+        }
+        tr{
+            height:1cm;
+        }
+        table{
+            border: 1px solid #2d2d2d;
+            background: rgba(16, 119, 100,0.30);
+            padding: 10px;
+            //z-index: 2;
+            width:100%
+        }
+        .button{
+            width:5cm;
+            color:black;
+            font-size:15px;
+        }
+        .button:hover{
+               text-shadow:rgba(16, 119, 100,0.30);
+               background-color:cadetblue;
+               transition:0,5s;
+           }
+        .Txtstyle4 {         
+                         border: 1px solid #c4c4c4;         
+                         padding: 2px 2px 2px 2px;         
+                         border-radius: 4px;         
+                         box-shadow: 0px 0px 8px #d9d9d9;         
+                         background-color: #F0F0FF;    
+                         font-size:15px;
+           }         
+           .Txtstyle4:focus {         
+                                outline: none;        
+                                border: 1px solid #7bc1f7;         
+                                box-shadow: 0px 0px 8px #7bc1f7;         
+                                background-color: #FFF2FF;         
+           }
+
+           .list{
+                width:  4cm;
+                font-size:15px;
+           }
+           .list:hover{
+               text-shadow:rgba(16, 119, 100,0.30);
+               background-color:cadetblue;
+               transition:0,5s;
+           }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <header>
+                <table>
+                    <tr>
+                        <td><asp:Label CssClass="button" ID="Labeltime" runat="server" Text="Label"></asp:Label></td>
+                        <td><asp:Label CssClass="button" ID="LabelNom" runat="server" Text="Label"></asp:Label></td>
+                        <td><asp:Button CssClass="button" ID="Button1" runat="server" Text="Consultation" OnClick="Button1_Click" /></td>
+                        <td><asp:Button CssClass="button" ID="Button3" runat="server" Text="Contenu" OnClick="Button3_Click" /></td>
+                        <td><asp:Button CssClass="button" ID="Button2" runat="server" Text="Deconnecter" OnClick="Button2_Click" /></td>
+                    </tr>
+                </table>
+            </header>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

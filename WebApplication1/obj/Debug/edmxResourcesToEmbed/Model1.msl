@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_planteModelStoreContainer" CdmEntityContainer="db_planteEntities">
+    <EntitySetMapping Name="contenus">
+      <EntityTypeMapping TypeName="db_planteModel.contenu">
+        <MappingFragment StoreEntitySet="contenu">
+          <ScalarProperty Name="idContenu" ColumnName="idContenu" />
+          <ScalarProperty Name="numj" ColumnName="numj" />
+          <ScalarProperty Name="nump" ColumnName="nump" />
+          <ScalarProperty Name="quantite" ColumnName="quantite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jardins">
+      <EntityTypeMapping TypeName="db_planteModel.jardin">
+        <MappingFragment StoreEntitySet="jardin">
+          <ScalarProperty Name="numJ" ColumnName="numJ" />
+          <ScalarProperty Name="nomJ" ColumnName="nomJ" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="superficier" ColumnName="superficier" />
+          <ScalarProperty Name="numjardinier" ColumnName="numjardinier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jardiniers">
+      <EntityTypeMapping TypeName="db_planteModel.jardinier">
+        <MappingFragment StoreEntitySet="jardinier">
+          <ScalarProperty Name="numJardinier" ColumnName="numJardinier" />
+          <ScalarProperty Name="nomJardinier" ColumnName="nomJardinier" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="dateEmbauche" ColumnName="dateEmbauche" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="MDP" ColumnName="MDP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plantes">
+      <EntityTypeMapping TypeName="db_planteModel.Plante">
+        <MappingFragment StoreEntitySet="Plante">
+          <ScalarProperty Name="numP" ColumnName="numP" />
+          <ScalarProperty Name="nomP" ColumnName="nomP" />
+          <ScalarProperty Name="Origine" ColumnName="Origine" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
